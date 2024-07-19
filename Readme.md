@@ -4,7 +4,13 @@
 
 A batch is a group of consecutive elements from the collection. The batch has a given maximum size.
 
-<img alt="Batched diagram created by ChatGPT" src="batchedgpt.webp" width="500">
+<p>
+    <img src="batchedgpt.webp" width="500" alt>
+    <em>
+    <br/>
+    ChatGPT prompt: A detailed flow-diagram style image showing a collection being split into batches. The collection contains elements 0 until 7. Numbers 0 to 2 go into the first batch, numbers 3 to 5 go into the second batch, numbers 6 and 7 go into the third batch. Numbers are rendered in a circle and each batch is captured in a square box. The color theme is toned down and apt for technical / api documentation.
+    </em>
+</p>
 
 ## Key Features
 
@@ -55,7 +61,13 @@ To make this work, `carousel.board()` accepts a collection of visitors:
 
 The `batched(by:)` function extends collection types to split their elements into batches of a specified size. This is particularly useful when processing large collections in chunks to optimize performance or to meet certain constraints. The return type of `batched(by:)` is a BatchedSubSequence, which itself is a collection of Collection.SubSequence of the original collection:
 
-<img alt="Batched diagram" src="batched.png" width="500">
+<p>
+    <img src="batched.png" width="500" alt>
+    <em>
+    <br/>
+    Memory layout of a BatchedSubSequence consists of an integer to hold the batch size, followed by the memory of the underlying collection.
+    </em>
+</p>
 
 ### O(1) Implementation
 
