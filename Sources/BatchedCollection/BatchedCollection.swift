@@ -30,7 +30,7 @@ extension Collection {
        in the original collection.
      */
     @inlinable @inline(__always)
-    func batched(by batchSize: Int) -> BatchedSubSequence<Self> {
+    public func batched(by batchSize: Int) -> BatchedSubSequence<Self> {
         return BatchedSubSequence(collection: self, batchSize: batchSize)
     }
 }
