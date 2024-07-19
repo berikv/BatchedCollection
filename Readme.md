@@ -53,7 +53,7 @@ To make this work, `carousel.board()` accepts a collection of visitors:
 
 ### Detailed Explanation
 
-The `batched(by:)` function extends collection types to split their elements into batches of a specified size. This is particularly useful when processing large collections in chunks to optimize performance or to meet certain constraints. The return type of `batched(by:)` is a  
+The `batched(by:)` function extends collection types to split their elements into batches of a specified size. This is particularly useful when processing large collections in chunks to optimize performance or to meet certain constraints. The return type of `batched(by:)` is a BatchedSubSequence, which itself is a collection of Collection.SubSequence of the original collection:
 
 <img alt="Batched diagram" src="batched.png" width="500">
 
