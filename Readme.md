@@ -72,7 +72,7 @@ list of integers may look unwieldy:
 
     let numbers = [3, 48, 23, 32, 55, 50, 71, 14, 93, 43, 66, 25, 9, 35, 59, 40, 45, 75, 88, 35, 62, 17, 16, 74, 32, 35, 39, 37, 4, 97, 67, 49, 95, 50, 9, 14, 85, 79, 24, 78, 85, 72, 1, 79, 1, 53, 39, 1, 48, 74]
 
-By formatting the numbers by e.g. 8 per line, the list can be **much easier** to parse:
+A small formatting script can help, by batching the numbers by e.g. 8:
 
     let description = numbers
         .batched(by: 8)
@@ -84,6 +84,8 @@ By formatting the numbers by e.g. 8 per line, the list can be **much easier** to
         .joined(separator: "\n    ")
 
     print("let numbers = [\n    \(description)]") // copy paste the new `let numbers` definition
+
+When the numbers are listed 8 per line, the list can be **much easier** to parse:
 
     let numbers = [
         03, 48, 23, 32, 55, 50, 71, 14
