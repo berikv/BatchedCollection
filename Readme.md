@@ -1,16 +1,8 @@
-# BatchedCollection - Form Batches from Swift Collection types
+# BatchedCollection - Form Batches from Swift Collections
 
-**BatchedCollection** is a Swift library that allows you to form batches. These batches have a set maximum count of consecutive elements. The library works with all Swift collection types.
+**BatchedCollection** is a library designed to help you group elements from any Swift collection into batches of a specified size. This is particularly useful for features like pagination or feeding input to a system that only accepts a certain maximum number of inputs, like a SIMD vector.
 
-A batch is a group of consecutive elements from the collection. The batch has a given maximum size.
-
-<p>
-    <img src="batchedgpt.webp" width="500" alt>
-    <em>
-    <br/>
-    ChatGPT prompt: A detailed flow-diagram style image showing a collection being split into batches. The collection contains elements 0 until 7. Numbers 0 to 2 go into the first batch, numbers 3 to 5 go into the second batch, numbers 6 and 7 go into the third batch. Numbers are rendered in a circle and each batch is captured in a square box. The color theme is toned down and apt for technical / api documentation.
-    </em>
-</p>
+A batch groups subsequent elements of a collection into batches with a maximum size that you define.
 
 ## Key Features
 
@@ -28,15 +20,22 @@ Add the following to your `Package.swift` file:
 
 ## Usage
 
-### Basic example
+### Basic examples
 
-Form batches from an array:
+Form batches of a Range:
 
-    let batched = Array(0..<7).batched(by: 3)
+    let batches = (0..<7).batched(by: 3)
     
-    print(Array(batched[0])) // prints "[0, 1, 2]"
-    print(Array(batched[1])) // prints "[3, 4, 5]"
-    print(Array(batched[2])) // prints "[6]"
+    batches[0] == 0..<3 // true, because `Range.SubSequence == Range`
+    batches[2] == 6..<7 // true
+
+Form batches from an Array:
+
+    let batches = Array(0..<7).batched(by: 3)
+    
+    print(Array(batches[0])) // prints "[0, 1, 2]"
+    print(Array(batches[1])) // prints "[3, 4, 5]"
+    print(Array(batches[2])) // prints "[6]"
 
 ### Practical example
 
@@ -76,10 +75,9 @@ A small formatting script can help, by batching the numbers by e.g. 8:
 
     let description = numbers
         .batched(by: 8)
-        .map{ batch in
-            batch
-                .map { String(format: "%02d", $0) }
-                .joined(separator: ", ")
+        .map { batch in batch
+            .map { String(format: "%02d", $0) }
+            .joined(separator: ", ")
         }
         .joined(separator: "\n    ")
 
