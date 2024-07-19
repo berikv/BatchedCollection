@@ -2,10 +2,10 @@
 @frozen
 public struct BatchedSubSequence<C: Collection>: Collection {
     @usableFromInline
-    let collection: C
+    let batchSize: Int
 
     @usableFromInline
-    let batchSize: Int
+    let collection: C
 
     public let startIndex: Int = 0
     public var endIndex: Int { (collection.count + batchSize - 1) / batchSize }
@@ -13,8 +13,8 @@ public struct BatchedSubSequence<C: Collection>: Collection {
     @inlinable
     init(collection: C, batchSize: Int) {
         precondition(batchSize > 0, "batchSize must be greater than zero")
-        self.collection = collection
         self.batchSize = batchSize
+        self.collection = collection
     }
 
     public subscript(position: Int) -> C.SubSequence {
