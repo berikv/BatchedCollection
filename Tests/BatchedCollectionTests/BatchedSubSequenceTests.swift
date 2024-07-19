@@ -2,6 +2,7 @@ import XCTest
 @testable import BatchedCollection
 
 final class BatchedSubSequenceTests: XCTestCase {
+    
     func testBatchedRangeCount() {
         let range: Range<Int> = 0..<42
         let batched = range.batched(by: 5)
@@ -12,6 +13,8 @@ final class BatchedSubSequenceTests: XCTestCase {
     func testBatchedRangeSubscript() {
         let range: Range<Int> = 0..<42
         let batched = range.batched(by: 5)
+        print(Range<Int>.SubSequence.self == Range<Int>.self)
+        
 
         XCTAssertEqual(batched[0], 0..<5)
         XCTAssertEqual(batched[4], 20..<25)
@@ -39,6 +42,22 @@ final class BatchedSubSequenceTests: XCTestCase {
             40..<42
         ]
         XCTAssertEqual(seen, expected)
+    }
+
+    func testBatchedClosedRangeCount() {
+        let range: ClosedRange<Int> = 0...42
+        let batched = range.batched(by: 5)
+
+        XCTAssertEqual(batched.count, 9)
+    }
+
+    func testBatchedClosedRangeSubscript() {
+        let range: ClosedRange<Int> = 0...42
+        let batched = range.batched(by: 5)
+
+        XCTAssertEqual(Array(batched[0]), Array(0..<5))
+        XCTAssertEqual(Array(batched[4]), Array(20..<25))
+        XCTAssertEqual(Array(batched[8]), Array(40..<43))
     }
 
     func testBatchedArrayCount() {
