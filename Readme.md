@@ -23,7 +23,7 @@ A batch is a group of consecutive elements from the collection. The batch has a 
 Add the following to your `Package.swift` file:
 
     dependencies: [
-        .package(url: "https://github.com/berikv/BatchedCollection.git", from: "0.0.1")
+        .package(url: "https://github.com/berikv/BatchedCollection.git", from: "0.0.2")
     ]
 
 ## Usage
