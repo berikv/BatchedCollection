@@ -65,6 +65,30 @@ To make this work, `carousel.board()` accepts a collection of visitors:
         func board(_ passengers: some Collection<Visitors>) async { ... }
     }
 
+### Concrete example
+
+Another example where this can be useful is in source rewriting. A long
+list of integers may look unwieldy:
+
+    let numbers = [3, 48, 23, 32, 55, 50, 71, 14, 93, 43, 66, 25, 9, 35, 59, 40, 45, 75, 88, 35, 62, 17, 16, 74, 32, 35, 39, 37, 4, 97, 67, 49, 95, 50, 9, 14, 85, 79, 24, 78, 85, 72, 1, 79, 1, 53, 39, 1, 48, 74]
+
+By formatting the numbers by e.g. 8 per line, the list can be **much easier** to parse:
+
+    let description = numbers
+        .batched(by: 8)
+        .map{ batch in batch.map { String(format: "%02d", $0) }.joined(separator: ", ") }
+        .joined(separator: "\n")
+    print("let numbers = [\n\(description)]")
+
+    let numbers = [
+        03, 48, 23, 32, 55, 50, 71, 14
+        93, 43, 66, 25, 09, 35, 59, 40
+        45, 75, 88, 35, 62, 17, 16, 74
+        32, 35, 39, 37, 04, 97, 67, 49
+        95, 50, 09, 14, 85, 79, 24, 78
+        85, 72, 01, 79, 01, 53, 39, 01
+        48, 74]
+
 ### Detailed Explanation
 
 The `batched(by:)` function extends collection types to split their elements into batches of a specified size. This is particularly useful when processing large collections in chunks to optimize performance or to meet certain constraints. The return type of `batched(by:)` is a BatchedSubSequence, which itself is a collection of Collection.SubSequence of the original collection:
