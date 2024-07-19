@@ -76,9 +76,14 @@ By formatting the numbers by e.g. 8 per line, the list can be **much easier** to
 
     let description = numbers
         .batched(by: 8)
-        .map{ batch in batch.map { String(format: "%02d", $0) }.joined(separator: ", ") }
-        .joined(separator: "\n")
-    print("let numbers = [\n\(description)]")
+        .map{ batch in
+            batch
+                .map { String(format: "%02d", $0) }
+                .joined(separator: ", ")
+        }
+        .joined(separator: "\n    ")
+
+    print("let numbers = [\n    \(description)]") // copy paste the new `let numbers` definition
 
     let numbers = [
         03, 48, 23, 32, 55, 50, 71, 14
