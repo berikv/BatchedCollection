@@ -13,8 +13,6 @@ final class BatchedSubSequenceTests: XCTestCase {
     func testBatchedRangeSubscript() {
         let range: Range<Int> = 0..<42
         let batched = range.batched(by: 5)
-        print(Range<Int>.SubSequence.self == Range<Int>.self)
-        
 
         XCTAssertEqual(batched[0], 0..<5)
         XCTAssertEqual(batched[4], 20..<25)
