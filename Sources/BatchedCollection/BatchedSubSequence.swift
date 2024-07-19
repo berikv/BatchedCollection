@@ -4,11 +4,13 @@ public struct BatchedSubSequence<C: Collection>: Collection {
     @usableFromInline
     let batchSize: Int
 
+    public let startIndex: Int = 0
+
+    @inlinable @inline(__always)
+    public var endIndex: Int { (collection.count + batchSize - 1) / batchSize }
+
     @usableFromInline
     let collection: C
-
-    public let startIndex: Int = 0
-    public var endIndex: Int { (collection.count + batchSize - 1) / batchSize }
 
     @inlinable
     init(collection: C, batchSize: Int) {
