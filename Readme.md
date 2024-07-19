@@ -40,6 +40,14 @@ Form batches from an array:
 
 ### Practical example
 
+<p>
+    <img src="fair.webp" width="500" alt>
+    <em>
+    <br/>
+    A Carousel can only hold so many people.
+    </em>
+</p>
+
 Imagine writing a fair simulator where the carousel only allows **34 visitors at a time**. You can batch the visitors into groups of 34:
 
     while parkIsOpen {
